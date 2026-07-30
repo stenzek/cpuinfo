@@ -359,12 +359,7 @@ TEST(QUALCOMM, snapdragon_626) {
 		.vendor = cpuinfo_arm_chipset_vendor_qualcomm,
 		.series = cpuinfo_arm_chipset_series_qualcomm_msm,
 		.model = 8953,
-		.suffix =
-			{
-				[0] = 'P',
-				[1] = 'R',
-				[2] = 'O',
-			},
+		.suffix = "PRO",
 	};
 
 	struct cpuinfo_cache big_l1i = {0};
@@ -615,12 +610,7 @@ TEST(QUALCOMM, snapdragon_653) {
 		.vendor = cpuinfo_arm_chipset_vendor_qualcomm,
 		.series = cpuinfo_arm_chipset_series_qualcomm_msm,
 		.model = 8976,
-		.suffix =
-			{
-				[0] = 'P',
-				[1] = 'R',
-				[2] = 'O',
-			},
+		.suffix = "PRO",
 	};
 
 	struct cpuinfo_cache big_l1i = {0};
@@ -862,15 +852,7 @@ TEST(QUALCOMM, snapdragon_821) {
 		.vendor = cpuinfo_arm_chipset_vendor_qualcomm,
 		.series = cpuinfo_arm_chipset_series_qualcomm_msm,
 		.model = 8996,
-		.suffix =
-			{
-				[0] = 'P',
-				[1] = 'R',
-				[2] = 'O',
-				[3] = '-',
-				[4] = 'A',
-				[5] = 'C',
-			},
+		.suffix = "PRO-AC",
 	};
 
 	struct cpuinfo_cache big_l1i = {0};
@@ -1235,10 +1217,7 @@ TEST(MEDIATEK, mediatek_mt8173c) {
 		.vendor = cpuinfo_arm_chipset_vendor_mediatek,
 		.series = cpuinfo_arm_chipset_series_mediatek_mt,
 		.model = 8173,
-		.suffix =
-			{
-				[0] = 'C',
-			},
+		.suffix = "C",
 	};
 
 	struct cpuinfo_cache big_l1i = {0};
