@@ -76,6 +76,7 @@ int main(int argc, char** argv) {
 	printf("\tAMX_TILE: %s\n", cpuinfo_has_x86_amx_tile() ? "yes" : "no");
 	printf("\tAMX_INT8: %s\n", cpuinfo_has_x86_amx_int8() ? "yes" : "no");
 	printf("\tAMX_FP16: %s\n", cpuinfo_has_x86_amx_fp16() ? "yes" : "no");
+	printf("\tAMX_FP8: %s\n", cpuinfo_has_x86_amx_fp8() ? "yes" : "no");
 	printf("\tAVXVNNI: %s\n", cpuinfo_has_x86_avxvnni() ? "yes" : "no");
 	printf("\tAVX_VNNI_INT8: %s\n", cpuinfo_has_x86_avx_vnni_int8() ? "yes" : "no");
 	printf("\tAVX_VNNI_INT16: %s\n", cpuinfo_has_x86_avx_vnni_int16() ? "yes" : "no");
@@ -169,6 +170,9 @@ int main(int argc, char** argv) {
 	printf("\tARM v8.2 Int8 matrix multiplication: %s\n", cpuinfo_has_arm_i8mm() ? "yes" : "no");
 	printf("\tARM v8.3 JS conversion: %s\n", cpuinfo_has_arm_jscvt() ? "yes" : "no");
 	printf("\tARM v8.3 complex: %s\n", cpuinfo_has_arm_fcma() ? "yes" : "no");
+	printf("\tARM v8.7 FP8: %s\n", cpuinfo_has_arm_fp8() ? "yes" : "no");
+	printf("\tARM v8.7 FP8 dot product: %s\n", cpuinfo_has_arm_neon_f8dot4() ? "yes" : "no");
+	printf("\tARM v8.7 FP8 matrix multiplication: %s\n", cpuinfo_has_arm_neon_f8mm() ? "yes" : "no");
 
 	printf("SIMD extensions:\n");
 	printf("\tARM SVE: %s\n", cpuinfo_has_arm_sve() ? "yes" : "no");
@@ -199,7 +203,9 @@ int main(int argc, char** argv) {
 	printf("\tAtomics: %s\n", cpuinfo_has_riscv_a() ? "yes" : "no");
 	printf("\tSingle-Precision Floating-Point: %s\n", cpuinfo_has_riscv_f() ? "yes" : "no");
 	printf("\tDouble-Precision Floating-Point: %s\n", cpuinfo_has_riscv_d() ? "yes" : "no");
+	printf("\tHalf-Precision Floating-Point: %s\n", cpuinfo_has_riscv_zfh() ? "yes" : "no");
 	printf("\tCompressed: %s\n", cpuinfo_has_riscv_c() ? "yes" : "no");
 	printf("\tVector: %s\n", cpuinfo_has_riscv_v() ? "yes" : "no");
+	printf("\tVector Half-Precision Floating-Point: %s\n", cpuinfo_has_riscv_zvfh() ? "yes" : "no");
 #endif
 }

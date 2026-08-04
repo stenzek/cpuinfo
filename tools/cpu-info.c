@@ -82,6 +82,15 @@ static const char* uarch_to_string(enum cpuinfo_uarch uarch) {
 			return "Sunny Cove";
 		case cpuinfo_uarch_willow_cove:
 			return "Willow Cove";
+		case cpuinfo_uarch_golden_cove:
+			return "Golden Cove";
+		case cpuinfo_uarch_raptor_cove:
+			return "Raptor Cove";
+		case cpuinfo_uarch_redwood_cove:
+			return "Redwood Cove";
+		case cpuinfo_uarch_coyote_cove:
+			return "Coyote Cove";
+
 		case cpuinfo_uarch_willamette:
 			return "Willamette";
 		case cpuinfo_uarch_prescott:
@@ -206,6 +215,8 @@ static const char* uarch_to_string(enum cpuinfo_uarch uarch) {
 			return "Cortex-A510";
 		case cpuinfo_uarch_cortex_a520:
 			return "Cortex-A520";
+		case cpuinfo_uarch_cortex_a320:
+			return "Cortex-A320";
 		case cpuinfo_uarch_cortex_a710:
 			return "Cortex-A710";
 		case cpuinfo_uarch_cortex_a715:
@@ -307,25 +318,29 @@ static const char* uarch_to_string(enum cpuinfo_uarch uarch) {
 		case cpuinfo_uarch_sawtooth:
 			return "Sawtooth";
 		case cpuinfo_uarch_coll_everest:
-			return "Coll_Everest";
+			return "Coll Everest";
 		case cpuinfo_uarch_coll_sawtooth:
-			return "Coll_Sawtooth";
+			return "Coll Sawtooth";
 		case cpuinfo_uarch_tupai_everest:
-			return "Tupai_Everest";
+			return "Tupai Everest";
 		case cpuinfo_uarch_tupai_sawtooth:
-			return "Tupai_Sawtooth";
+			return "Tupai Sawtooth";
 		case cpuinfo_uarch_tahiti_everest:
-			return "Tahiti_Everest";
+			return "Tahiti Everest";
 		case cpuinfo_uarch_tahiti_sawtooth:
-			return "Tahiti_Sawtooth";
+			return "Tahiti Sawtooth";
 		case cpuinfo_uarch_tilos_everest:
-			return "Tilos_Everest";
+			return "Tilos Everest";
 		case cpuinfo_uarch_tilos_sawtooth:
-			return "Tilos_Sawtooth";
+			return "Tilos Sawtooth";
 		case cpuinfo_uarch_donan_everest:
 			return "Donan Everest";
 		case cpuinfo_uarch_donan_sawtooth:
 			return "Donan Sawtooth";
+		case cpuinfo_uarch_sotra_super:
+			return "Sotra Super";
+		case cpuinfo_uarch_sotra_performance:
+			return "Sotra Performance";
 		case cpuinfo_uarch_thunderx:
 			return "ThunderX";
 		case cpuinfo_uarch_thunderx2:

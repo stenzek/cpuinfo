@@ -373,6 +373,14 @@ enum cpuinfo_uarch {
 	cpuinfo_uarch_sunny_cove = 0x0010020C,
 	/** Intel Willow Cove microarchitecture (10 nm, Tiger Lake). */
 	cpuinfo_uarch_willow_cove = 0x0010020D,
+	/** Intel Golden Cove microarchitecture (Sapphire Rapids). */
+	cpuinfo_uarch_golden_cove = 0x0010020E,
+	/** Intel Raptor Cove microarchitecture (Emerald Rapids). */
+	cpuinfo_uarch_raptor_cove = 0x0010020F,
+	/** Intel Redwood Cove microarchitecture (Granite Rapids). */
+	cpuinfo_uarch_redwood_cove = 0x00100210,
+	/** Intel Coyote Cove microarchitecture. */
+	cpuinfo_uarch_coyote_cove = 0x00100211,
 
 	/** Pentium 4 with Willamette, Northwood, or Foster cores. */
 	cpuinfo_uarch_willamette = 0x00100300,
@@ -537,6 +545,8 @@ enum cpuinfo_uarch {
 	cpuinfo_uarch_cortex_a510 = 0x00300551,
 	/** ARM Cortex-A520. */
 	cpuinfo_uarch_cortex_a520 = 0x00300552,
+	/** ARM Cortex-A320. */
+	cpuinfo_uarch_cortex_a320 = 0x00300553,
 	/** ARM Cortex-A710. */
 	cpuinfo_uarch_cortex_a710 = 0x00300571,
 	/** ARM Cortex-A715. */
@@ -652,6 +662,11 @@ enum cpuinfo_uarch {
 	cpuinfo_uarch_donan_everest = 0x00700308,
 	/** Apple M4 processor (little cores). */
 	cpuinfo_uarch_donan_sawtooth = 0x00700309,
+
+	/** Apple M5 Pro / Max processor (super cores). */
+	cpuinfo_uarch_sotra_super = 0x0070030A,
+	/** Apple M5 Pro / Max processor (performance cores). */
+	cpuinfo_uarch_sotra_performance = 0x0070030B,
 
 	/** Cavium ThunderX. */
 	cpuinfo_uarch_thunderx = 0x00800100,
@@ -899,6 +914,7 @@ struct cpuinfo_x86_isa {
 	bool amx_tile;
 	bool amx_int8;
 	bool amx_fp16;
+	bool amx_fp8;
 	bool avx_vnni_int8;
 	bool avx_vnni_int16;
 	bool avx_ne_convert;
@@ -1470,6 +1486,14 @@ static inline bool cpuinfo_has_x86_amx_fp16(void) {
 #endif
 }
 
+static inline bool cpuinfo_has_x86_amx_fp8(void) {
+#if CPUINFO_ARCH_X86 || CPUINFO_ARCH_X86_64
+	return cpuinfo_isa.amx_fp8;
+#else
+	return false;
+#endif
+}
+
 /*
  * Intel AVX Vector Neural Network Instructions (VNNI) INT8
  * Supported Platfroms: Sierra Forest, Arrow Lake, Lunar Lake
@@ -1770,6 +1794,9 @@ struct cpuinfo_arm_isa {
 	bool sme_bi32i32;
 	bool sme_b16b16;
 	bool sme_f16f16;
+	bool fp8;
+	bool f8dot;
+	bool f8mm;
 	uint32_t svelen;
 	uint32_t smelen;
 #endif
@@ -2080,6 +2107,34 @@ static inline bool cpuinfo_has_arm_i8mm(void) {
 #endif
 }
 
+static inline bool cpuinfo_has_arm_fp8(void) {
+#if CPUINFO_ARCH_ARM64
+	return cpuinfo_isa.fp8;
+#else
+	return false;
+#endif
+}
+
+/* For backward compatibility */
+#define cpuinfo_has_arm_f8dot cpuinfo_has_arm_neon_f8dot4
+#define cpuinfo_has_arm_f8mm cpuinfo_has_arm_neon_f8mm
+
+static inline bool cpuinfo_has_arm_neon_f8dot4(void) {
+#if CPUINFO_ARCH_ARM64
+	return cpuinfo_isa.f8dot;
+#else
+	return false;
+#endif
+}
+
+static inline bool cpuinfo_has_arm_neon_f8mm(void) {
+#if CPUINFO_ARCH_ARM64
+	return cpuinfo_isa.f8mm;
+#else
+	return false;
+#endif
+}
+
 static inline bool cpuinfo_has_arm_aes(void) {
 #if CPUINFO_ARCH_ARM || CPUINFO_ARCH_ARM64
 	return cpuinfo_isa.aes;
@@ -2244,6 +2299,12 @@ struct cpuinfo_riscv_isa {
 	bool c;
 	/* Vector Extension. */
 	bool v;
+
+	/* ISA Extensions */
+	/* Half-Precision Floating-Point Extension. */
+	bool zfh;
+	/* Half-Precision Floating-Point Vector Extension. */
+	bool zvfh;
 };
 
 extern CPUINFO_EXPORT struct cpuinfo_riscv_isa cpuinfo_isa;
@@ -2314,6 +2375,22 @@ static inline bool cpuinfo_has_riscv_c(void) {
 static inline bool cpuinfo_has_riscv_v(void) {
 #if CPUINFO_ARCH_RISCV32 || CPUINFO_ARCH_RISCV64
 	return cpuinfo_isa.v;
+#else
+	return false;
+#endif
+}
+
+static inline bool cpuinfo_has_riscv_zfh(void) {
+#if CPUINFO_ARCH_RISCV32 || CPUINFO_ARCH_RISCV64
+	return cpuinfo_isa.zfh;
+#else
+	return false;
+#endif
+}
+
+static inline bool cpuinfo_has_riscv_zvfh(void) {
+#if CPUINFO_ARCH_RISCV32 || CPUINFO_ARCH_RISCV64
+	return cpuinfo_isa.zvfh;
 #else
 	return false;
 #endif
